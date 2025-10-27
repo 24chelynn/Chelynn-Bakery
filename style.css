@@ -1,0 +1,509 @@
+/* ========================
+   Global Variables & Reset
+   ======================== */
+
+/* Warna:
+   --primary-color: Cokelat tua (untuk teks, mirip kopi/cokelat)
+   --secondary-color: Krem/Putih gading (latar belakang)
+   --accent-color: Pink lembut (untuk tombol dan aksen)
+   --text-light: Warna krem terang
+*/
+:root {
+    --primary-color: #4E342E; /* Dark Brown */
+    --secondary-color: #FDFCF8; /* Creamy White */
+    --accent-color: #EAC8CA; /* Soft Pink/Rose */
+    --text-light: #FDFCF8;
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Lato', sans-serif;
+    --shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+    line-height: 1.6;
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    position: relative;
+}
+
+/* Animasi garis bawah untuk judul */
+.section-title::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
+    margin: 0.5rem auto 0;
+}
+
+/* ========================
+   Header & Navigation
+   ======================== */
+
+.header {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    background-color: rgba(253, 252, 248, 0.9); /* Latar belakang semi-transparan */
+    backdrop-filter: blur(10px);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem 2rem;
+    height: 70px;
+}
+
+.nav-logo {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    gap: 2.5rem;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--primary-color);
+    font-weight: 700;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Animasi hover link navigasi */
+.nav-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: var(--accent-color);
+    transition: width 0.3s ease;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+}
+
+.nav-link:hover {
+    color: #000;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+.nav-icons {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+.nav-icons i {
+    font-size: 1.2rem;
+    color: var(--primary-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.nav-icons i:hover {
+    color: var(--accent-color);
+}
+
+/* Hamburger (Menu Mobile) */
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--primary-color);
+    transition: all 0.3s ease-in-out;
+}
+
+/* ========================
+   Hero Section
+   ======================== */
+
+.hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+                url('https://source.unsplash.com/random/1920x1080/?bakery,pastries');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed; /* Parallax effect */
+    color: var(--text-light);
+}
+
+.hero-content h1 {
+    font-size: 4.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.hero-content p {
+    font-size: 1.5rem;
+    font-family: var(--font-body);
+    font-weight: 300;
+    margin-bottom: 2.5rem;
+}
+
+/* ========================
+   CTA Button (Tombol Utama)
+   ======================== */
+
+.cta-button {
+    font-family: var(--font-body);
+    font-weight: 700;
+    text-decoration: none;
+    color: var(--primary-color);
+    background-color: var(--accent-color);
+    padding: 0.8rem 2.5rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    border: 2px solid var(--accent-color);
+}
+
+.cta-button:hover {
+    background-color: transparent;
+    border-color: var(--accent-color);
+    color: var(--accent-color); /* Ubah warna teks saat di Hero */
+}
+
+/* Penyesuaian hover di luar Hero */
+.products .cta-button:hover,
+.about .cta-button:hover {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    color: var(--text-light);
+}
+
+
+/* ========================
+   Products Section
+   ======================== */
+
+.products {
+    padding: 6rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2.5rem;
+}
+
+.product-card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    overflow: hidden; /* Penting untuk radius gambar */
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.product-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* === EFEK ZOOM GAMBAR === */
+.product-image-container {
+    width: 100%;
+    height: 250px;
+    overflow: hidden; /* Ini kunci untuk efek zoom */
+}
+
+.product-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Transisi halus */
+}
+
+.product-card:hover .product-image-container img {
+    transform: scale(1.15); /* Zoom In saat hover */
+}
+
+/* ======================== */
+
+.product-info {
+    padding: 1.5rem;
+    text-align: center;
+    flex-grow: 1; /* Memastikan semua card sama tinggi */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-info h3 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+}
+
+.product-info p {
+    font-size: 0.95rem;
+    margin-bottom: 1rem;
+    color: #666;
+}
+
+.product-info .price {
+    font-family: var(--font-heading);
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    margin-bottom: 1.2rem;
+}
+
+.cta-button.small {
+    padding: 0.6rem 1.8rem;
+    font-size: 0.9rem;
+}
+
+/* ========================
+   About Section
+   ======================== */
+
+.about {
+    padding: 6rem 2rem;
+    background-color: #fff;
+}
+
+.about-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+}
+
+.about-content .section-title {
+    text-align: left;
+    margin-bottom: 1.5rem;
+}
+
+.about-content .section-title::after {
+    margin: 0.5rem 0 0; /* Ratakan kiri */
+}
+
+.about-content p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+}
+
+/* ========================
+   Footer
+   ======================== */
+
+.footer {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 3rem 2rem;
+    text-align: center;
+}
+
+.footer-logo {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--secondary-color);
+}
+
+.social-icons {
+    margin-bottom: 1.5rem;
+}
+
+.social-icons a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 1.5rem;
+    margin: 0 0.75rem;
+    transition: color 0.3s ease;
+}
+
+.social-icons a:hover {
+    color: var(--accent-color);
+}
+
+.footer p {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+/* ========================
+   Animasi Fade-in (JS)
+   ======================== */
+
+.fade-in {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ========================
+   Mobile Buy Button (Tugas)
+   ======================== */
+
+.mobile-buy-button {
+    display: none; /* Sembunyi di desktop */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-decoration: none;
+    z-index: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease;
+}
+
+.mobile-buy-button:hover {
+    background-color: #d1a3a5;
+}
+
+.mobile-buy-button i {
+    margin-right: 0.5rem;
+}
+
+/* ========================
+   Responsive (Mobile First)
+   ======================== */
+
+@media (max-width: 768px) {
+    /* Tampilkan Tombol Mobile */
+    .mobile-buy-button {
+        display: block;
+    }
+
+    .navbar {
+        padding: 1rem 1.5rem;
+    }
+
+    /* Logika Menu Hamburger */
+    .hamburger {
+        display: block;
+    }
+
+    .nav-menu {
+        position: fixed;
+        left: -100%; /* Sembunyi di kiri */
+        top: 70px; /* Di bawah header */
+        flex-direction: column;
+        background-color: var(--secondary-color);
+        width: 100%;
+        text-align: center;
+        transition: left 0.3s ease-in-out;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .nav-menu.active {
+        left: 0; /* Tampilkan menu */
+    }
+
+    .nav-item {
+        margin: 1.5rem 0;
+    }
+
+    /* Animasi Tombol Hamburger (X) */
+    .hamburger.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .hamburger.active .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+    .hamburger.active .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+    /* Selesai Logika Hamburger */
+
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .hero-content p {
+        font-size: 1.2rem;
+    }
+
+    .products, .about {
+        padding: 4rem 1.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    .about-container {
+        grid-template-columns: 1fr; /* Stack di mobile */
+    }
+
+    /* Pastikan padding bawah body tidak tertutup tombol mobile */
+    body {
+        padding-bottom: 60px; /* Sesuaikan dengan tinggi mobile button */
+    }
+}
